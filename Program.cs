@@ -13,14 +13,15 @@ namespace planesPuller
 
         public static void Main(string[] args)
         {
-            using (var db = new planeContext())
-            {
+            var db = new planeContext();
+            
                 using (TcpClient client = new TcpClient())
                 {
                     Task connectionResult = client.ConnectAsync(serverIp, port);
                     connectionResult.Wait();
                     using (System.Net.Sockets.NetworkStream stream = client.GetStream())
                     {
+                        int i = 0;
                         StreamReader rdr = new StreamReader(stream);
                         foreach (string line in ReadLines(rdr))
                         {
@@ -29,16 +30,22 @@ namespace planesPuller
                             if (response.Length == 22)
                             {
                                 blah = new planeInfo(response);
+                                i++;
                                 db.planeInfos.Add(blah);
-                                db.SaveChanges();
-                                System.Console.WriteLine(blah.ToString());
+                                if (i==500)
+                                    {
+                                        db.SaveChanges();
+                                        db = new planeContext();
+                                        i=0;
+                                    }
+                                System.Console.WriteLine(i.ToString());
                             }
                             else
                                 System.Console.WriteLine("WRONG");
                         }
                     }
                 }
-            }
+            
         }
         private static IEnumerable<string> ReadLines(StreamReader stream)
         {
