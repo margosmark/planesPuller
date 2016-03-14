@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0-*",
+  "description": "planesPuller Console Application",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
+  "tooling": {
+    "defaultNamespace": "planesPuller"
+  },
+
+  "dependencies": {
+  },
+
+  "commands": {
+    "planesPuller": "planesPuller",
+    "ef": "EntityFramework.Commands"
+  },
+
+  "frameworks": {
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Console": "4.0.0-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Threading": "4.0.11-beta-23516",
+        "System.Net.Sockets": "4.1.0-beta-23516",
+        "EntityFramework7.Npgsql": "3.1.0-rc1-3",
+        "EntityFramework.Commands": "7.0.0-rc1-final" ,
+        "runtime.linux.System.Net.NetworkInformation": "4.1.0-beta-23516",
+        "runtime.unix.System.Net.Security": "4.0.0-beta-23516"
+      }
+    }
+  }
+}
